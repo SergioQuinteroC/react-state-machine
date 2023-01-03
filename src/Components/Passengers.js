@@ -12,8 +12,11 @@ export const Passengers = ({ state, send }) => {
     send("DONE");
   };
 
+  const { passengers } = state.context;
+
   const submit = (e) => {
     e.preventDefault();
+    send("ADD", { newPassengers: value });
     changeValue("");
   };
 
@@ -22,6 +25,11 @@ export const Passengers = ({ state, send }) => {
       <p className="Passengers-title title">
         Agrega a las personas que van a volar ✈️
       </p>
+      {passengers.map((passenger, idx) => (
+        <p className="text" key={`person-${idx}`}>
+          {passenger}
+        </p>
+      ))}
       <input
         id="name"
         name="name"
